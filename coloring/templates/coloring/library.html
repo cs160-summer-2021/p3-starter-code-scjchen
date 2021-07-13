@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Library</title>
+	<script type="text/javascript" src="{% static 'coloring/vendors/jquery/jquery-3.3.1.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'coloring/vendors/jquery-ui/jquery-ui.js' %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'coloring/vendors/bootstrap/css/bootstrap.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'coloring/style.css' %}" />
+	<!-- google chilank fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Chilanka&display=swap" rel="stylesheet" />
+</head>
+
+<body style="background-color: #2c3232">
+	<div class="lib-header">
+		<p style="font-size: 5vh; color: white; margin-top: 3vh">Library</p>
+		<div class="lib-cont">
+			<div class="lib-nav-bar">
+				<div id="places-btn" class="lib-btn-active">Places</div>
+				<div id="patterns-btn" class="lib-btn-inactive">Patterns</div>
+				<div id="floras-btn" class="lib-btn-inactive">Floras</div>
+				<div id="animals-btn" class="lib-btn-inactive">Animals</div>
+				<div id="people-btn" class="lib-btn-inactive">People</div>
+			</div>
+			<div class="nav-tab"></div>
+			<div class="lib-art-cont">
+				<img id="#img-1" class="img-lib" src="{% static 'coloring/images/library-art/places/sydney.svg' %}" alt="" />
+				<img id="#img-2" class="img-lib" src="{% static 'coloring/images/library-art/places/ny.svg' %}" alt="" />
+				<img id="#img-3" class="img-lib" src="{% static 'coloring/images/library-art/places/eu.svg' %}" alt="" />
+				<img id="#img-4" class="img-lib" src="{% static 'coloring/images/library-art/places/colosseum.svg' %}" alt="" />
+				<img id="#img-5" class="img-lib" src="{% static 'coloring/images/library-art/places/holland.svg' %}" alt="" />
+				<img id="#img-6" class="img-lib" src="{% static 'coloring/images/library-art/places/japan.svg' %}" alt="" />
+				<img id="#img-7" class="img-lib" src="{% static 'coloring/images/library-art/places/italy.svg' %}" alt="" />
+				<img id="#img-8" class="img-lib" src="{% static 'coloring/images/library-art/places/india.svg' %}" alt="" />
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="{% static 'coloring/script.js' %}"></script>
+</body>
+
+</html>

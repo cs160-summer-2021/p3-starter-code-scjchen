@@ -9,4 +9,6 @@ urlpatterns = [
     path('artwork_page_1', views.artwork_page_1, name='artwork_page_1'),
     path('art_community_main_page', views.art_community_main_page, name='art_community_main_page'),
     path('new_interaction', views.new_interaction, name='new_interaction'),
+    path('library', views.library, name='library'),
+    path('new_interaction', views.index, name='new_interaction')
 ]
