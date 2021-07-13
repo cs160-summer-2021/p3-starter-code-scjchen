@@ -1,10 +1,17 @@
-body {margin: 0px; padding: 0px; font-family:"Arial"; overflow-x:hidden; }
+body {margin: 0px; padding: 0px; font-family:"Arial"; overflow-x:hidden; position: fixed}
 
 img { position: absolute; display: block; margin: 0px; border: none; padding: 0px; }
 
 div { position: absolute; }
 
-#content-container { display: block; position: relative; width: 1024px;  margin-left: auto; margin-right: auto;  }
+#content-container { 
+	top: 140px;
+	height: 100vh;
+	width: 1024px;    
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+	
 
 #_bg__art_community_main_page {
 	top: 0px;
@@ -15,7 +22,7 @@ div { position: absolute; }
 }
 
 #community_showcase_4 {
-	top: 1149.99px;
+	top: 995.99px;
 	left: 0px;
 	width: 1024px;
 	height: 496px;
@@ -165,7 +172,7 @@ div { position: absolute; }
 }
 
 #community_showcase_2 {
-	top: 650.99px;
+	top: 500px;
 	left: -70px;
 	width: 1094px;
 	height: 496px;
@@ -333,10 +340,8 @@ div { position: absolute; }
 }
 
 #community_showcase_1 {
-	top: 153px;
-	left: 0px;
 	width: 1024px;
-	height: 496px;
+	height: 480px;
 }
 
 #profile_div_ek2 {
@@ -429,7 +434,7 @@ div { position: absolute; }
 }
 
 #frame_2 {
-	top: 265px;
+	top: 125px;
 	left: 25px;
 	width: 974px;
 	height: 353px;
@@ -515,12 +520,15 @@ div { position: absolute; }
 	left: 0px;
 	width: 1024px;
 	height: 153px;
+	z-index: 2;
 }
 #heading_component {
+	position: fixed;
 	top: 0px;
 	left: 0px;
 	width: 1024px;
 	height: 153px;
+	z-index: 1;
 }
 
 #title_bg {
