@@ -3,8 +3,8 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'coloring/index.html')
 
-def demo(request):
-    return render(request, 'coloring/demo.html')
+def drawing(request):
+    return render(request, 'coloring/drawing.html')
 
 def artwork_page_3(request):
     return render(request, 'coloring/artwork_page_3.html')
