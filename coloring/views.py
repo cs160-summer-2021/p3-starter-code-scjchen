@@ -6,6 +6,9 @@ def index(request):
 def drawing(request):
     return render(request, 'coloring/drawing.html')
 
+def drawing2(request):
+    return render(request, 'coloring/drawing2.html')
+
 def artwork_page_3(request):
     return render(request, 'coloring/artwork_page_3.html')
 

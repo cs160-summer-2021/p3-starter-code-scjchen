@@ -153,3 +153,11 @@ button:active {
   box-shadow: 0 2px #666;
   transform: translateY(4px);
 }
+
+#foxImg {
+  position: absolute;
+  height: 70%;
+  top: 80;
+  left: 50;
+  filter: grayscale(100)
+}

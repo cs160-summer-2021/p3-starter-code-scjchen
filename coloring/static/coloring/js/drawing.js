@@ -1,4 +1,18 @@
  window.onload = function() {
+
+   // coloring variables
+   const undoHistory = [];
+   const redoHistory = [];
+   const redoColors = {};
+   let prevSwatch = null;
+   let selectedColor = "#9e9e9e";
+   let selectedBrush = false;
+   let showAnimal = true;
+
+   if (window.location.pathname == '/coloring/drawing2') {
+     showAnimal = false;
+   }
+
    // coloring page
    var drawing = {
      item: null,
@@ -12,14 +26,6 @@
      options: [],
      $container: $('#color-palette')
    }
-
-   // coloring variables
-   const undoHistory = [];
-   const redoHistory = [];
-   const redoColors = {};
-   let prevSwatch = null;
-   let selectedColor = "#9e9e9e";
-   let selectedBrush = false;
 
    function myCustomInteraction() {
      var tool = new paper.Tool();
@@ -114,19 +120,23 @@
      paper.setup(canvas);
      getColorsCreatePalette();
 
-     paper.project.importSVG(drawing.filePath, function(item) {
-       drawing.item = item._children["layer1"];
-       paper.project.insertLayer(0, drawing.item);
-       paper.project.layers[0].fitBounds(paper.view.bounds)
-       paper.project.layers[0].scale(0.7)
+     if (showAnimal) {
+       paper.project.importSVG(drawing.filePath, function(item) {
+         drawing.item = item._children["layer1"];
+         paper.project.insertLayer(0, drawing.item);
+         paper.project.layers[0].fitBounds(paper.view.bounds)
+         paper.project.layers[0].scale(0.7)
+       })
 
-       if (custom) {
-         myCustomInteraction();
-       } else {
-         myGradientInteraction();
-       }
+     } else {
+       $('#drawing-cont').append($('<img id="foxImg">').attr('src', '/static/community/images/fox.png'));
+     }
 
-     });
+     if (custom) {
+       myCustomInteraction();
+     } else {
+       myGradientInteraction();
+     };
    }
 
    /*
