@@ -1,6 +1,4 @@
  window.onload = function() {
-   var canvas = document.getElementById('myCanvas');
-
    // coloring page
    var drawing = {
      item: null,
@@ -10,16 +8,18 @@
 
    // color palette
    var cp = {
-     history: ["#9e9e9e"], // black selected by default
+     history: ["#9e9e9e"], // grey selected by default
      options: [],
      $container: $('#color-palette')
    }
 
-   // coloring histories
+   // coloring variables
    const undoHistory = [];
    const redoHistory = [];
    const redoColors = {};
    let prevSwatch = null;
+   let selectedColor = "#9e9e9e";
+   let selectedBrush = false;
 
    function myCustomInteraction() {
      var tool = new paper.Tool();
@@ -58,11 +58,14 @@
          $(this).css("box-shadow", "inset 0px 6px 15px");
          cp.history.push($(this).css("background-color"));
          prevSwatch = $(this);
+         selectedColor = $(this).css("background-color");
+         resetPen();
        });
        cp.$container.append($swatch);
      }
      $swatch.css("box-shadow", "inset 0px 6px 15px");
      prevSwatch = $swatch;
+     selectedColor = prevSwatch.css("background-color");
    }
 
    // loads a set of colors from a json to create a color palette
@@ -113,6 +116,7 @@
        drawing.item = item._children["layer1"];
        paper.project.insertLayer(0, drawing.item);
        paper.project.layers[0].fitBounds(paper.view.bounds)
+       paper.project.layers[0].scale(0.7)
 
        if (custom) {
          myCustomInteraction();
@@ -122,6 +126,67 @@
 
      });
    }
+
+   /*
+    * Canvas Pen Tool
+    */
+
+   // pen variables
+   var canvas = document.getElementById('myCanvas');
+   var ctx = canvas.getContext('2d');
+   var width = window.innerWidth;
+   var height = window.innerHeight;
+   var penWidth = 12;
+   var penColor = selectedColor;
+
+   canvas.height = height;
+   canvas.width = width;
+
+   function start(e) {
+     this.down = true;
+     this.X = e.touches[0].pageX;
+     this.Y = e.touches[0].pageY;
+   }
+
+   function end() {
+     this.down = false;
+   }
+
+   function pencil(e) {
+     if (this.down) {
+       with(ctx) {
+         beginPath();
+         moveTo(this.X, this.Y);
+         lineTo(e.touches[0].pageX, e.touches[0].pageY);
+         ctx.lineWidth = penWidth;
+         ctx.lineCap = "round";
+         ctx.strokeStyle = penColor;
+         stroke();
+       }
+       this.X = e.touches[0].pageX;
+       this.Y = e.touches[0].pageY;
+     }
+   }
+
+   function startPen() {
+     penColor = selectedColor;
+     canvas.addEventListener('touchstart', start, 0);
+     canvas.addEventListener('touchend', end, 0);
+     canvas.addEventListener('touchmove', pencil, 0);
+   }
+
+   function endPen() {
+     canvas.removeEventListener('touchstart', start, 0);
+     canvas.removeEventListener('touchend', end, 0);
+     canvas.removeEventListener('touchmove', pencil, 0);
+   }
+
+   function resetPen() {
+     $('.strokes').css("background-color", selectedColor);
+     endPen();
+     startPen();
+   }
+
    // Set up the drawing interactivity.
    init(true);
 
@@ -170,4 +235,46 @@
    $('#communityBtn').on("click", function() {
      location.href = 'art_community_main_page'
    })
+
+   $('#brushBtn').on("click", function() {
+     $('.strokes').css("background-color", selectedColor);
+
+     if (selectedBrush) {
+       $('#brush-slider').switchClass("brush-slider", "brush-slider-hidden")
+       endPen();
+       $(this).attr(
+         'src', '/static/coloring/icons/brush_white.svg')
+
+     } else {
+       $('#brush-slider').switchClass("brush-slider-hidden", "brush-slider")
+       startPen();
+       $(this).attr(
+         'src', '/static/coloring/icons/palette.svg')
+     }
+     selectedBrush = !selectedBrush;
+   })
+
+   // pen width selector
+
+   $('#s1').on("click", function() {
+     $('.strokes').css("border", "thin solid black")
+     $(this).css("border", "thick solid black")
+     penWidth = 15;
+     resetPen();
+   })
+
+   $('#s2').on("click", function() {
+     $('.strokes').css("border", "thin solid black")
+     $(this).css("border", "thick solid black")
+     penWidth = 25;
+     resetPen();
+   })
+
+   $('#s3').on("click", function() {
+     $('.strokes').css("border", "thin solid black")
+     $(this).css("border", "thick solid black")
+     penWidth = 35;
+     resetPen();
+   })
+
  }

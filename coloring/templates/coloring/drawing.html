@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'coloring/css/drawing.css' %}" />
     <script type="text/javascript" src="{% static 'coloring/vendors/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'coloring/vendors/paper/paper-full.min.js' %}"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -17,10 +18,16 @@
         <img id="backBtn" class="drawing-nav-btn" src="{% static 'coloring/icons/drawing_back.svg' %}" alt="">
         <img class="drawing-nav-btn" src="{% static 'coloring/icons/download.svg' %}" alt="">
     </div>
+    <div id="navTop2"></div>
     <div id="drawing-cont">
-        <canvas id="myCanvas" width="700px" height="700px"></canvas>
+        <canvas id="myCanvas"></canvas>
         <div id="color-palette"></div>
-        <div id="color-palette-shape">
+        <div id="brush-slider" class="brush-slider-hidden color-palette-shape">
+            <div id="s1" class="strokes"></div>
+            <div id="s2" class="strokes"></div>
+            <div id="s3" class="strokes"></div>
+        </div>
+        <div class="color-palette-shape">
             <button id="resetBtn" class="drawing-nav-btn">
                 <img src=" {% static 'coloring/icons/reset.svg' %}" style="height: 80%">
             </button>
