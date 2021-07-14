@@ -29,7 +29,7 @@
          tolerance: 10,
          fill: true
        });
-       if (hit) {
+       if (hit && !selectedBrush) {
          // Color pallette keeps track of the full history of colors, though we
          // only color in with the most-recent color.
          hit.item.fillColor = cp.history[cp.history.length - 1];
