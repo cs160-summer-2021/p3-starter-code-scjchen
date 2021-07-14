@@ -1,26 +1,26 @@
-window.addEventListener("load", () => {
+window.addEventListener('load', () => {
   const canvas = document.querySelector('canvas');
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext('2d');
 
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
 
   let painting = false;
 
-  function start(e){
+  function start(e) {
     painting = true;
     draw(e);
   }
 
-  function end(){
+  function end() {
     painting = false;
     ctx.beginPath();
   }
 
-  function draw(e){
-    if(!painting) return;
+  function draw(e) {
+    if (!painting) return;
     ctx.lineWidth = 10;
-    ctx.lineCap = "round";
+    ctx.lineCap = 'round';
 
     ctx.lineTo(e.clientX, e.clientY);
     ctx.stroke();
@@ -31,7 +31,4 @@ window.addEventListener("load", () => {
   canvas.addEventListener('mousedown', start);
   canvas.addEventListener('mouseup', end);
   canvas.addEventListener('mousemove', draw);
-
-
 });
-

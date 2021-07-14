@@ -91,12 +91,13 @@ html, body {
   background-color: white;
   border-radius: 0.5rem;
   overflow-y: scroll;
+  z-index: 3;
 }
 
 .img-lib {
   margin: 1vh;
   height: 30%;
   width: 45%;
-  object-fit: cover;
+  object-fit: fill;
   border: 0.3rem solid black;
 }
