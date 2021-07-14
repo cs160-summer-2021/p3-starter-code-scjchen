@@ -24,3 +24,5 @@ def new_interaction(request):
 def library(request):
     return render(request, 'coloring/library.html')
 
+def landing_page(request):
+    return render(request, 'coloring/landing_page.html')
