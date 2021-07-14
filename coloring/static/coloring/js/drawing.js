@@ -59,7 +59,9 @@
          cp.history.push($(this).css("background-color"));
          prevSwatch = $(this);
          selectedColor = $(this).css("background-color");
-         resetPen();
+         if (selectedBrush) {
+           resetPen();
+         }
        });
        cp.$container.append($swatch);
      }
@@ -247,6 +249,7 @@
 
      } else {
        $('#brush-slider').switchClass("brush-slider-hidden", "brush-slider")
+
        startPen();
        $(this).attr(
          'src', '/static/coloring/icons/palette.svg')
@@ -276,5 +279,4 @@
      penWidth = 35;
      resetPen();
    })
-
  }
