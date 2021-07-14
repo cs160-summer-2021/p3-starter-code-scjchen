@@ -1,59 +1,38 @@
-window.addEventListener('load', () => {
-  const canvas = document.querySelector('canvas');
-  const ctx = canvas.getContext('2d');
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
 
-  canvas.width = 1024;
-  canvas.height= 1366;
+var width  = window.innerWidth;
+var height = window.innerHeight;
 
-  let painting = false;
+canvas.height = height;
+canvas.width = width;
 
-  function start(e) {
-    painting = true;
-    pencil(e);
+function start(e) {
+  this.down = true;   
+  this.X = e.touches[0].pageX;
+  this.Y = e.touches[0].pageY;
+}
+
+function end() {
+  this.down = false;          
+}
+
+function pencil(e) {
+  if(this.down) {
+    with(ctx) {
+      beginPath();
+      moveTo(this.X, this.Y);
+      lineTo(e.touches[0].pageX, e.touches[0].pageY);
+      ctx.lineWidth = 2;
+      ctx.lineCap = "round";
+      ctx.strokeStyle = "#000000";
+      stroke();
+    }
+    this.X = e.touches[0].pageX ;
+    this.Y = e.touches[0].pageY ;
   }
+}
 
-  function end() {
-    painting = false;
-    ctx.beginPath();
-  }
-
-<<<<<<< HEAD
-  function draw(e) {
-    if (!painting) return;
-    ctx.lineWidth = 10;
-    ctx.lineCap = 'round';
-=======
-
-  function pencil(e){
-    if(!painting) return;
-    ctx.lineWidth = 3;
-    ctx.lineCap = "square";
-
-    ctx.lineTo(e.clientX, e.clientY);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(e.clientX, e.clientY);
-  }
-
-  function brush(e){
-    if(!painting) return;
-    ctx.lineWidth = 45;
-    ctx.lineCap = "round";
->>>>>>> 56e073821cd19fc04fe5dc0dc58f38d762d0e123
-
-    ctx.lineTo(e.clientX, e.clientY);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(e.clientX, e.clientY);
-  }
-
-  canvas.addEventListener('mousedown', start);
-  canvas.addEventListener('mouseup', end);
-<<<<<<< HEAD
-  canvas.addEventListener('mousemove', draw);
-=======
-  canvas.addEventListener('mousemove', pencil);
-
-
->>>>>>> 56e073821cd19fc04fe5dc0dc58f38d762d0e123
-});
+canvas.addEventListener('touchstart', start, 0);
+canvas.addEventListener('touchend', end, 0);
+canvas.addEventListener('touchmove', pencil, 0);
